@@ -26,7 +26,6 @@
   button{font-family:inherit;cursor:pointer}
   .hidden{display:none!important}
 
-  /* ── SHELL ── */
   #app{display:flex;min-height:100vh}
   .sidebar{width:250px;background:var(--side);color:var(--side-text);display:flex;flex-direction:column;position:fixed;inset:0 auto 0 0;z-index:40;transition:transform .25s}
   .sidebar .brand{display:flex;align-items:center;gap:11px;padding:20px 20px 18px;border-bottom:1px solid #1e293b}
@@ -58,8 +57,6 @@
   .topbar h2{font-size:1.15rem;font-weight:700;letter-spacing:-.01em}
   .topbar .right{margin-left:auto;display:flex;align-items:center;gap:12px}
   .topbar .clock{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-dim);background:var(--bg);padding:6px 12px;border-radius:8px}
-  .chip-tes{display:flex;align-items:center;gap:7px;font-size:.8rem;font-weight:600;color:var(--green-text);background:var(--green-soft);padding:6px 12px;border-radius:9px}
-  .chip-tes svg{width:15px;height:15px}
   .content{flex:1;padding:28px 26px}
   .footer{border-top:1px solid var(--border);padding:14px 26px;color:var(--text-soft);font-size:.78rem;background:var(--card);text-align:center}
   .view{display:none}.view.active{display:block;animation:fade .25s ease}
@@ -67,7 +64,6 @@
   .page-title{font-size:1.5rem;font-weight:700;letter-spacing:-.01em;margin-bottom:4px}
   .page-sub{color:var(--text-dim);font-size:.9rem;margin-bottom:22px}
 
-  /* ── CARDS / MÉTRICAS ── */
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-bottom:26px}
   .stat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
   .stat .ico{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;margin-bottom:12px}
@@ -84,7 +80,6 @@
   .panel-h h3{font-size:1rem;font-weight:600}
   .panel-b{padding:18px 20px}
 
-  /* ── FORM REGISTRO ── */
   .form-card{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);max-width:620px;padding:8px 4px}
   .reg-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:20px 22px}
   .field{margin:0}
@@ -94,7 +89,6 @@
   .field input:focus,.field select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
   .form-foot{display:flex;justify-content:flex-end;gap:10px;padding:16px 22px;border-top:1px solid var(--border)}
 
-  /* ── TOOLBAR + TABLA ── */
   .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
   .toolbar input,.toolbar select{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-size:.9rem;color:var(--text);font-family:inherit}
   .toolbar input{flex:1;min-width:200px}
@@ -124,7 +118,6 @@
   .acts{display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap}
   .tbl-empty{padding:46px;text-align:center;color:var(--text-dim);font-size:.9rem}
 
-  /* ── MODAL ── */
   .overlay{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:flex-start;justify-content:center;padding:40px 16px;z-index:60;overflow-y:auto}
   .overlay.show{display:flex}
   .modal{background:var(--card);border-radius:16px;box-shadow:var(--shadow-md);width:100%;max-width:480px;animation:fade .2s ease}
@@ -135,12 +128,6 @@
   .modal-b .field{margin-bottom:14px}
   .modal-b .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .modal-f{display:flex;justify-content:flex-end;gap:10px;padding:16px 22px;border-top:1px solid var(--border)}
-  .combo{position:relative}
-  .combo-list{position:absolute;top:calc(100% + 4px);left:0;right:0;background:#fff;border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow-md);max-height:210px;overflow-y:auto;z-index:8;display:none}
-  .combo-list.show{display:block}
-  .combo-opt{padding:9px 12px;font-size:.9rem;cursor:pointer;color:var(--text)}
-  .combo-opt:hover{background:var(--primary-soft);color:var(--primary)}
-  .combo-opt.new{color:var(--primary);font-weight:600}
   .cf-ic{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;margin-bottom:14px}
   .cf-ic svg{width:24px;height:24px}
   .cf-ic.danger{background:var(--red-soft);color:var(--red-text)}
@@ -148,13 +135,11 @@
   .login-err{margin-top:6px;background:var(--red-soft);border:1px solid #fca5a5;color:var(--red-text);font-size:.83rem;padding:10px 12px;border-radius:9px;display:none}
   .login-err.show{display:block}
 
-  /* ── TOAST ── */
   .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(90px);background:var(--card);border:1px solid var(--border);border-left:4px solid var(--primary);color:var(--text);padding:13px 18px;border-radius:11px;font-size:.88rem;transition:.3s;z-index:80;box-shadow:var(--shadow-md);max-width:90vw}
   .toast.show{transform:translateX(-50%) translateY(0)}
   .toast.err{border-left-color:var(--red)}
   .toast.ok{border-left-color:var(--green)}
 
-  /* ── INFO ── */
   .info-txt{color:var(--text);font-size:.95rem;line-height:1.65}
   .info-txt p{margin-bottom:12px}
   .wa-btn{display:inline-flex;align-items:center;gap:9px;background:#25D366;color:#fff;border:none;border-radius:11px;padding:12px 20px;font-weight:600;font-size:.95rem;text-decoration:none;transition:.15s}
@@ -223,18 +208,14 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
         Acerca de</a>
     </nav>
-    <div class="sfoot" id="sfoot">
-      <!-- se llena según sesión -->
-    </div>
+    <div class="sfoot" id="sfoot"></div>
   </aside>
 
   <div class="main">
     <div class="topbar">
       <button class="menu-btn" id="menu-btn">☰</button>
       <h2 id="tb-title">Registrarse</h2>
-      <div class="right">
-        <span class="clock" id="clock">—</span>
-      </div>
+      <div class="right"><span class="clock" id="clock">—</span></div>
     </div>
 
     <div class="content">
@@ -247,8 +228,6 @@
             <div class="field full"><label>Nombre completo *</label><input id="r-nombre" autocomplete="off" placeholder="Ej. Juan Carlos Pérez López"></div>
             <div class="field"><label>Fuerza *</label><select id="r-fuerza"></select></div>
             <div class="field"><label>Talla *</label><select id="r-talla"></select></div>
-            <div class="field"><label>Grado</label><div class="combo"><input id="r-grado" autocomplete="off" placeholder="Escribe o elige…"></div></div>
-            <div class="field"><label>Arma</label><div class="combo"><input id="r-arma" autocomplete="off" placeholder="Escribe o elige…"></div></div>
           </div>
           <div class="form-foot">
             <button class="btn" onclick="limpiarReg()">Limpiar</button>
@@ -262,7 +241,7 @@
         <div class="page-title">Listado de registros</div>
         <div class="page-sub">Personal registrado y estado de su pago.</div>
         <div class="toolbar">
-          <input type="search" id="bus" placeholder="Buscar por nombre, grado, arma…">
+          <input type="search" id="bus" placeholder="Buscar por nombre…">
           <select id="fil-fuerza"><option value="">Todas las fuerzas</option></select>
           <select id="fil-talla"><option value="">Todas las tallas</option></select>
           <select id="fil-estado"><option value="">Pagó y no pagó</option><option>Pagó</option><option>No pagó</option></select>
@@ -309,9 +288,7 @@
             <p>Para su uso seguro se recomienda <strong>no compartir el enlace con personal ajeno a la CFAC</strong>. Su uso debe quedar <strong>exclusivamente interno</strong>.</p>
           </div>
           <div class="info-note">
-            <b>Nota de ciberseguridad.</b> El registro y la consulta de datos son abiertos (sin contraseña) para facilitar el uso; únicamente la confirmación de pagos está protegida con el acceso del tesorero (contraseña guardada cifrada mediante <i>hash</i>). Al estar construida sobre herramientas gratuitas (GitHub Pages, Google Sheets y Apps Script), el enlace es accesible para quien lo tenga, por lo que la seguridad depende en buena medida del <b>uso responsable</b>.
-            <br><br>
-            <b>Recomendaciones:</b> el tesorero debe usar una contraseña fuerte y no compartirla, cerrar sesión al terminar, no divulgar el enlace fuera de la CFAC y no almacenar información clasificada o sensible. Bajo estas condiciones es adecuada para el control administrativo interno; su seguridad real depende de que se use con responsabilidad.
+            <b>Nota de ciberseguridad.</b> El registro y la consulta de datos son abiertos (sin contraseña) para facilitar el uso; únicamente la confirmación de pagos está protegida con el acceso del tesorero. Al estar construida sobre herramientas gratuitas (GitHub Pages, Google Sheets y Apps Script), el enlace es accesible para quien lo tenga, por lo que la seguridad depende en buena medida del <b>uso responsable</b>.
           </div>
         </div></div>
       </section>
@@ -321,7 +298,7 @@
   </div>
 </div>
 
-<!-- MODAL LOGIN TESORERO -->
+<!-- MODAL LOGIN -->
 <div class="overlay" id="ov-login">
   <div class="modal" style="max-width:400px">
     <div class="modal-h"><h3>Acceso tesorero</h3><button class="modal-x" onclick="cerrar('ov-login')">&times;</button></div>
@@ -348,15 +325,13 @@
 
 <!-- MODAL EDITAR -->
 <div class="overlay" id="ov-edit">
-  <div class="modal">
+  <div class="modal" style="max-width:420px">
     <div class="modal-h"><h3>Editar registro</h3><button class="modal-x" onclick="cerrar('ov-edit')">&times;</button></div>
     <div class="modal-b">
       <div class="field"><label>Nombre completo *</label><input id="e-nombre" autocomplete="off"></div>
-      <div class="grid2">
+      <div class="modal-b grid2" style="padding:0;gap:14px;display:grid;grid-template-columns:1fr 1fr">
         <div class="field"><label>Fuerza</label><select id="e-fuerza"></select></div>
         <div class="field"><label>Talla</label><select id="e-talla"></select></div>
-        <div class="field"><label>Grado</label><div class="combo"><input id="e-grado" autocomplete="off"></div></div>
-        <div class="field"><label>Arma</label><div class="combo"><input id="e-arma" autocomplete="off"></div></div>
       </div>
     </div>
     <div class="modal-f"><button class="btn" onclick="cerrar('ov-edit')">Cancelar</button><button class="btn btn-primary" id="edit-save">Guardar</button></div>
@@ -387,26 +362,22 @@
 <div class="toast" id="toast"></div>
 
 <script>
-/* ════════ CONFIGURACIÓN ════════ */
 const API_URL = "https://script.google.com/macros/s/AKfycbxmZZZ4Bdncd-5CRqDNJmoGFbWxrbafW6WrFHIcl4kxBIQTCCO9HrQ9eoVRy3rXeydcVA/exec";
 const FUERZAS = ['Ejército','Fuerza Aérea','Fuerza Naval'];
 const TALLAS  = ['XS','S','M','L','XL','XXL','XXXL'];
-const GRADOS_PRESET = ['General de División','General de Brigada','Coronel','Teniente Coronel','Mayor','Capitán','Teniente','Subteniente','Suboficial Mayor','Sargento Primero','Sargento Segundo','Cabo','Soldado'];
-const ARMAS_PRESET  = ['Infantería','Artillería','Caballería','Ingenieros','Comunicaciones','Transmisiones','Sanidad','Material de Guerra','Aviación','Infantería de Marina'];
-/* ════════════════════════════════ */
 
 const _mem={};
-const store={get:k=>{try{return localStorage.getItem(k)}catch(e){return _mem[k]||null}},
+const store={
+  get:k=>{try{return localStorage.getItem(k)}catch(e){return _mem[k]||null}},
   set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){_mem[k]=v}},
-  del:k=>{try{localStorage.removeItem(k)}catch(e){delete _mem[k]}}};
+  del:k=>{try{localStorage.removeItem(k)}catch(e){delete _mem[k]}}
+};
 
 let S={token:store.get('sicop_token'),nombre:store.get('sicop_nombre'),usuario:store.get('sicop_user')};
 let REGS=[];
 let editId=null, pagoId=null;
 
-/* ── API ── */
 async function api(params,method='GET'){
-  if(!API_URL) throw new Error('Falta configurar API_URL en el index.html');
   if(method==='GET'){
     const qs=Object.keys(params).map(k=>encodeURIComponent(k)+'='+encodeURIComponent(params[k])).join('&');
     const r=await fetch(API_URL+'?'+qs+'&t='+Date.now(),{method:'GET',redirect:'follow'});
@@ -415,19 +386,17 @@ async function api(params,method='GET'){
   const r=await fetch(API_URL,{method:'POST',body:new URLSearchParams(params),redirect:'follow'});
   return chk(await r.json());
 }
-function chk(res){ if(res&&res.authError){ salirTesorero(true); throw new Error('Sesión expirada'); } return res; }
+function chk(res){if(res&&res.authError){salirTesorero(true);throw new Error('Sesión expirada');}return res;}
 
 function toast(msg,tipo){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(tipo?' '+tipo:'');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),3200);}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 function esTesorero(){return !!S.token;}
 function fmtL(n){return 'L. '+(Number(n)||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
-
-/* ── Reloj ── */
 function pad(n){return String(n).padStart(2,'0');}
+
 function reloj(){const d=new Date();let h=d.getHours();const a=h<12?'a.m.':'p.m.';h=h%12||12;document.getElementById('clock').textContent=pad(d.getDate())+'/'+pad(d.getMonth()+1)+'/'+d.getFullYear()+' '+h+':'+pad(d.getMinutes())+' '+a;}
 setInterval(reloj,1000);
 
-/* ── Navegación ── */
 const titulos={registro:'Registrarse',listado:'Listado',reportes:'Reportes',ayuda:'Ayuda',acerca:'Acerca de'};
 document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',e=>{
   e.preventDefault();
@@ -443,40 +412,17 @@ document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',e=>{
 }));
 document.getElementById('menu-btn').addEventListener('click',()=>document.getElementById('sidebar').classList.toggle('open'));
 
-/* ── Combos selectores ── */
 function llenarSelect(id,arr,placeholder){
   const el=document.getElementById(id);
   el.innerHTML=(placeholder?`<option value="">${placeholder}</option>`:'')+arr.map(v=>`<option>${esc(v)}</option>`).join('');
 }
-function distinct(campo){return [...new Set(REGS.map(r=>String(r[campo]||'').trim()).filter(Boolean))];}
-function opcionesGrado(){const s={};GRADOS_PRESET.concat(distinct('grado')).forEach(v=>{v=String(v).trim();if(v)s[v.toLowerCase()]=v;});return Object.keys(s).map(k=>s[k]).sort((a,b)=>a.localeCompare(b,'es'));}
-function opcionesArma(){const s={};ARMAS_PRESET.concat(distinct('arma')).forEach(v=>{v=String(v).trim();if(v)s[v.toLowerCase()]=v;});return Object.keys(s).map(k=>s[k]).sort((a,b)=>a.localeCompare(b,'es'));}
-function makeCombo(input,optsFn){
-  const cont=input.parentNode;
-  let list=cont.querySelector('.combo-list');
-  if(!list){list=document.createElement('div');list.className='combo-list';cont.appendChild(list);}
-  function render(){
-    const f=input.value.trim(); let vals=optsFn();
-    if(f) vals=vals.filter(v=>v.toLowerCase().indexOf(f.toLowerCase())!==-1);
-    let html=vals.slice(0,60).map(v=>`<div class="combo-opt" data-v="${esc(v)}">${esc(v)}</div>`).join('');
-    const existe=optsFn().some(v=>v.toLowerCase()===f.toLowerCase());
-    if(f && !existe) html+=`<div class="combo-opt new" data-v="${esc(f)}">+ Usar "${esc(f)}"</div>`;
-    if(!html) html='<div class="combo-opt" style="cursor:default;color:var(--text-soft)">Escribe para agregar…</div>';
-    list.innerHTML=html;
-  }
-  input.addEventListener('focus',()=>{render();list.classList.add('show');});
-  input.addEventListener('input',()=>{render();list.classList.add('show');});
-  input.addEventListener('blur',()=>setTimeout(()=>list.classList.remove('show'),150));
-  list.addEventListener('mousedown',e=>{const o=e.target.closest('.combo-opt');if(!o||o.dataset.v===undefined)return;input.value=o.dataset.v;list.classList.remove('show');});
-}
 
-/* ── Carga ── */
 async function cargar(){
   try{
     const res=await api({action:'list'});
     REGS=res.registros||[];
     pintarFiltros(); pintarListado(); pintarReportes();
-  }catch(e){ if(e.message!=='Sesión expirada') toast(e.message,'err'); }
+  }catch(e){if(e.message!=='Sesión expirada') toast(e.message,'err');}
 }
 function pintarFiltros(){
   const fu=[...new Set(REGS.map(r=>r.fuerza).filter(Boolean))].sort();
@@ -486,18 +432,23 @@ function pintarFiltros(){
   document.getElementById('fil-talla').innerHTML='<option value="">Todas las tallas</option>'+ordTa.map(p=>`<option>${esc(p)}</option>`).join('');
 }
 
-/* ── REGISTRARSE ── */
-function limpiarReg(){['r-nombre','r-grado','r-arma'].forEach(i=>document.getElementById(i).value='');document.getElementById('r-fuerza').selectedIndex=0;document.getElementById('r-talla').selectedIndex=0;}
+function limpiarReg(){
+  document.getElementById('r-nombre').value='';
+  document.getElementById('r-fuerza').selectedIndex=0;
+  document.getElementById('r-talla').selectedIndex=0;
+}
 document.getElementById('reg-save').addEventListener('click',async function(){
   const datos={
     action:'crear',
     nombre:document.getElementById('r-nombre').value.trim(),
     fuerza:document.getElementById('r-fuerza').value,
     talla:document.getElementById('r-talla').value,
-    grado:document.getElementById('r-grado').value.trim(),
-    arma:document.getElementById('r-arma').value.trim()
+    grado:'',
+    arma:''
   };
   if(!datos.nombre){toast('Escribe el nombre completo.','err');return;}
+  if(!datos.fuerza){toast('Selecciona la fuerza.','err');return;}
+  if(!datos.talla){toast('Selecciona la talla.','err');return;}
   this.disabled=true;this.textContent='Registrando…';
   try{
     const res=await api(datos,'POST');
@@ -508,7 +459,6 @@ document.getElementById('reg-save').addEventListener('click',async function(){
   finally{this.disabled=false;this.textContent='Registrarme';}
 });
 
-/* ── LISTADO ── */
 function pintarListado(){
   const cont=document.getElementById('tbl-listado');
   const q=(document.getElementById('bus').value||'').toLowerCase();
@@ -519,7 +469,7 @@ function pintarListado(){
     if(ff&&r.fuerza!==ff)return false;
     if(ft&&r.talla!==ft)return false;
     if(fe&&r.estado!==fe)return false;
-    if(q){const b=(r.nombre+' '+r.grado+' '+r.arma+' '+r.fuerza).toLowerCase();if(b.indexOf(q)===-1)return false;}
+    if(q){const b=(r.nombre+' '+r.fuerza).toLowerCase();if(b.indexOf(q)===-1)return false;}
     return true;
   });
   if(!regs.length){cont.innerHTML='<div class="tbl-empty">Sin registros que coincidan.</div>';return;}
@@ -533,7 +483,7 @@ function pintarListado(){
         <button class="btn btn-sm btn-danger" onclick="borrarReg('${r.id}')">Borrar</button>
       </div></td>`:'';
     return `<tr>
-      <td data-label="Nombre"><div class="nm">${esc(r.nombre)}</div><div class="mono">${esc(r.id)}${r.grado?' · '+esc(r.grado):''}${r.arma?' · '+esc(r.arma):''}</div></td>
+      <td data-label="Nombre"><div class="nm">${esc(r.nombre)}</div><div class="mono">${esc(r.id)}</div></td>
       <td data-label="Fuerza">${esc(r.fuerza||'—')}</td>
       <td data-label="Talla"><span class="pill talla">${esc(r.talla||'—')}</span></td>
       <td data-label="Estado"><span class="pill ${pag?'pago':'nopago'}">${esc(r.estado)}</span></td>
@@ -546,24 +496,23 @@ function pintarListado(){
 }
 ['bus','fil-fuerza','fil-talla','fil-estado'].forEach(id=>{
   const el=document.getElementById(id);
-  el.addEventListener('input',pintarListado); el.addEventListener('change',pintarListado);
+  el.addEventListener('input',pintarListado);el.addEventListener('change',pintarListado);
 });
 
-/* ── PAGO ── */
 function abrirPago(id){
   if(!esTesorero())return;
-  const r=REGS.find(x=>x.id===id); if(!r)return;
+  const r=REGS.find(x=>x.id===id);if(!r)return;
   pagoId=id;
   document.getElementById('pago-quien').textContent=r.nombre+' · '+(r.fuerza||'')+' · Talla '+(r.talla||'—');
   document.getElementById('pago-monto').value='';
-  abrir('ov-pago'); setTimeout(()=>document.getElementById('pago-monto').focus(),50);
+  abrir('ov-pago');setTimeout(()=>document.getElementById('pago-monto').focus(),50);
 }
 document.getElementById('pago-save').addEventListener('click',async function(){
   const monto=parseFloat(document.getElementById('pago-monto').value);
   if(isNaN(monto)||monto<0){toast('Escribe un monto válido.','err');return;}
   this.disabled=true;
   try{const res=await api({action:'pagar',token:S.token,id:pagoId,monto},'POST');if(!res.ok)throw new Error(res.error);
-    toast('Pago registrado.','ok'); cerrar('ov-pago'); await cargar();
+    toast('Pago registrado.','ok');cerrar('ov-pago');await cargar();
   }catch(e){toast(e.message,'err');}finally{this.disabled=false;}
 });
 async function abrirRevertir(id){
@@ -571,21 +520,18 @@ async function abrirRevertir(id){
   const ok=await confirmar({titulo:'Revertir pago',msg:'¿Marcar a "'+((r&&r.nombre)||id)+'" como NO pagó y poner el monto en 0?',ok:'Sí, revertir',danger:true});
   if(!ok)return;
   try{const res=await api({action:'despagar',token:S.token,id},'POST');if(!res.ok)throw new Error(res.error);
-    toast('Pago revertido.','ok'); await cargar();
+    toast('Pago revertido.','ok');await cargar();
   }catch(e){toast(e.message,'err');}
 }
 
-/* ── EDITAR / BORRAR ── */
 function abrirEditar(id){
   if(!esTesorero())return;
-  const r=REGS.find(x=>x.id===id); if(!r)return;
+  const r=REGS.find(x=>x.id===id);if(!r)return;
   editId=id;
   document.getElementById('e-nombre').value=r.nombre||'';
-  llenarSelect('e-fuerza',FUERZAS,'—'); document.getElementById('e-fuerza').value=r.fuerza||'';
+  llenarSelect('e-fuerza',FUERZAS,'—');document.getElementById('e-fuerza').value=r.fuerza||'';
   const ta=TALLAS.includes(r.talla)?TALLAS:TALLAS.concat([r.talla].filter(Boolean));
-  llenarSelect('e-talla',ta,'—'); document.getElementById('e-talla').value=r.talla||'';
-  document.getElementById('e-grado').value=r.grado||'';
-  document.getElementById('e-arma').value=r.arma||'';
+  llenarSelect('e-talla',ta,'—');document.getElementById('e-talla').value=r.talla||'';
   abrir('ov-edit');
 }
 document.getElementById('edit-save').addEventListener('click',async function(){
@@ -593,12 +539,11 @@ document.getElementById('edit-save').addEventListener('click',async function(){
     nombre:document.getElementById('e-nombre').value.trim(),
     fuerza:document.getElementById('e-fuerza').value,
     talla:document.getElementById('e-talla').value,
-    grado:document.getElementById('e-grado').value.trim(),
-    arma:document.getElementById('e-arma').value.trim()};
+    grado:'',arma:''};
   if(!datos.nombre){toast('El nombre es obligatorio.','err');return;}
   this.disabled=true;
   try{const res=await api(datos,'POST');if(!res.ok)throw new Error(res.error);
-    toast('Registro actualizado.','ok'); cerrar('ov-edit'); await cargar();
+    toast('Registro actualizado.','ok');cerrar('ov-edit');await cargar();
   }catch(e){toast(e.message,'err');}finally{this.disabled=false;}
 });
 async function borrarReg(id){
@@ -606,11 +551,10 @@ async function borrarReg(id){
   const ok=await confirmar({titulo:'Borrar registro',msg:'¿Seguro que quieres borrar a "'+((r&&r.nombre)||id)+'"? Esta acción no se puede deshacer.',ok:'Sí, borrar',danger:true});
   if(!ok)return;
   try{const res=await api({action:'borrar',token:S.token,id},'POST');if(!res.ok)throw new Error(res.error);
-    toast('Registro borrado.','ok'); await cargar();
+    toast('Registro borrado.','ok');await cargar();
   }catch(e){toast(e.message,'err');}
 }
 
-/* ── REPORTES ── */
 function pintarReportes(){
   const total=REGS.length;
   const pagaron=REGS.filter(r=>r.estado==='Pagó');
@@ -623,7 +567,6 @@ function pintarReportes(){
   ];
   document.getElementById('rep-cards').innerHTML=cards.map(c=>`<div class="stat"><div class="ico ${c.ic}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${c.svg}</svg></div><div class="n">${c.n}</div><div class="l">${c.l}</div></div>`).join('');
 
-  // por fuerza
   const fz={};
   REGS.forEach(r=>{const f=r.fuerza||'(sin fuerza)';if(!fz[f])fz[f]={total:0,pag:0,rec:0};fz[f].total++;if(r.estado==='Pagó'){fz[f].pag++;fz[f].rec+=Number(r.monto)||0;}});
   const ks=Object.keys(fz).sort();
@@ -633,8 +576,7 @@ function pintarReportes(){
     `</tbody></table></div>`
     :'<div class="tbl-empty">Aún no hay registros.</div>';
 
-  // por talla
-  const tl={}; REGS.forEach(r=>{const t=r.talla||'(sin talla)';tl[t]=(tl[t]||0)+1;});
+  const tl={};REGS.forEach(r=>{const t=r.talla||'(sin talla)';tl[t]=(tl[t]||0)+1;});
   const ordenadas=TALLAS.filter(t=>tl[t]).concat(Object.keys(tl).filter(t=>!TALLAS.includes(t)));
   const max=Math.max(1,...Object.values(tl));
   document.getElementById('rep-talla').innerHTML=ordenadas.length?
@@ -642,15 +584,14 @@ function pintarReportes(){
     :'<div class="tbl-empty">Aún no hay registros.</div>';
 }
 function exportarExcel(){
-  if(typeof XLSX==='undefined'){toast('No se pudo cargar el exportador. Revisa tu conexión.','err');return;}
+  if(typeof XLSX==='undefined'){toast('No se pudo cargar el exportador.','err');return;}
   if(!REGS.length){toast('No hay datos para exportar.','err');return;}
-  const filas=REGS.map(r=>({'ID':r.id,'Fuerza':r.fuerza||'','Grado':r.grado||'','Arma':r.arma||'','Nombre':r.nombre,'Talla':r.talla||'','Estado':r.estado,'Monto':Number(r.monto)||0,'Registrado':r.registradoEn||'','Pagó (registró)':r.pagadoPor||'','Fecha pago':r.pagadoEn||''}));
+  const filas=REGS.map(r=>({'ID':r.id,'Nombre':r.nombre,'Fuerza':r.fuerza||'','Talla':r.talla||'','Estado':r.estado,'Monto':Number(r.monto)||0,'Registrado':r.registradoEn||'','Pagó (registró)':r.pagadoPor||'','Fecha pago':r.pagadoEn||''}));
   const ws=XLSX.utils.json_to_sheet(filas);
-  ws['!cols']=[{wch:8},{wch:14},{wch:18},{wch:16},{wch:28},{wch:7},{wch:9},{wch:12},{wch:16},{wch:16},{wch:16}];
-  // hoja resumen por talla
-  const tl={}; REGS.forEach(r=>{const t=r.talla||'(sin talla)';tl[t]=(tl[t]||0)+1;});
+  ws['!cols']=[{wch:8},{wch:28},{wch:14},{wch:7},{wch:9},{wch:12},{wch:16},{wch:16},{wch:16}];
+  const tl={};REGS.forEach(r=>{const t=r.talla||'(sin talla)';tl[t]=(tl[t]||0)+1;});
   const resTalla=Object.keys(tl).sort().map(t=>({'Talla':t,'Cantidad':tl[t]}));
-  const ws2=XLSX.utils.json_to_sheet(resTalla); ws2['!cols']=[{wch:10},{wch:10}];
+  const ws2=XLSX.utils.json_to_sheet(resTalla);ws2['!cols']=[{wch:10},{wch:10}];
   const wb=XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb,ws,'Registros');
   XLSX.utils.book_append_sheet(wb,ws2,'Por talla');
@@ -659,32 +600,31 @@ function exportarExcel(){
   toast('Excel generado ('+REGS.length+' registros).','ok');
 }
 
-/* ── LOGIN TESORERO ── */
 function abrirLogin(){document.getElementById('l-user').value='';document.getElementById('l-pass').value='';document.getElementById('l-err').classList.remove('show');abrir('ov-login');setTimeout(()=>document.getElementById('l-user').focus(),50);}
 document.getElementById('l-btn').addEventListener('click',entrar);
 document.getElementById('l-pass').addEventListener('keydown',e=>{if(e.key==='Enter')entrar();});
 async function entrar(){
   const usuario=document.getElementById('l-user').value.trim();
   const pass=document.getElementById('l-pass').value;
-  const err=document.getElementById('l-err'); err.classList.remove('show');
+  const err=document.getElementById('l-err');err.classList.remove('show');
   if(!usuario||!pass){err.textContent='Escribe usuario y contraseña.';err.classList.add('show');return;}
-  const btn=document.getElementById('l-btn'); btn.disabled=true; btn.textContent='Entrando…';
+  const btn=document.getElementById('l-btn');btn.disabled=true;btn.textContent='Entrando…';
   try{
     const res=await api({action:'login',usuario,pass},'POST');
     if(!res.ok){err.textContent=res.error||'No se pudo iniciar sesión.';err.classList.add('show');return;}
     S={token:res.token,nombre:res.nombre,usuario:res.usuario};
     store.set('sicop_token',S.token);store.set('sicop_nombre',S.nombre);store.set('sicop_user',S.usuario);
-    cerrar('ov-login'); pintarSesion(); pintarListado();
+    cerrar('ov-login');pintarSesion();pintarListado();
     toast('Bienvenido, '+S.nombre+'.','ok');
   }catch(e){err.textContent=e.message;err.classList.add('show');}
   finally{btn.disabled=false;btn.textContent='Iniciar sesión';}
 }
 function salirTesorero(expirada){
-  try{ if(S.token) api({action:'logout',token:S.token},'POST'); }catch(e){}
+  try{if(S.token)api({action:'logout',token:S.token},'POST');}catch(e){}
   store.del('sicop_token');store.del('sicop_nombre');store.del('sicop_user');
   S={token:null,nombre:null,usuario:null};
-  pintarSesion(); pintarListado();
-  if(expirada) setTimeout(()=>toast('La sesión del tesorero expiró.','err'),100);
+  pintarSesion();pintarListado();
+  if(expirada)setTimeout(()=>toast('La sesión del tesorero expiró.','err'),100);
 }
 function pintarSesion(){
   const f=document.getElementById('sfoot');
@@ -705,7 +645,6 @@ document.getElementById('pass-save').addEventListener('click',async function(){
   catch(e){toast(e.message,'err');}finally{this.disabled=false;}
 });
 
-/* ── Modales util ── */
 const ICO_INFO='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>';
 const ICO_DANGER='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.3 4.3 2.6 18a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 4.3a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>';
 function confirmar(opt){
@@ -716,11 +655,11 @@ function confirmar(opt){
     const icon=document.getElementById('cf-icon');
     icon.className='cf-ic '+(opt.danger?'danger':'info');
     icon.innerHTML=opt.danger?ICO_DANGER:ICO_INFO;
-    const ok=document.getElementById('cf-ok'), cancel=document.getElementById('cf-cancel'), ov=document.getElementById('ov-confirm');
+    const ok=document.getElementById('cf-ok'),cancel=document.getElementById('cf-cancel'),ov=document.getElementById('ov-confirm');
     ok.textContent=opt.ok||'Confirmar';
     ok.className='btn '+(opt.danger?'btn-danger':'btn-primary');
     function fin(val){ov.classList.remove('show');ok.onclick=cancel.onclick=ov.onclick=null;res(val);}
-    ok.onclick=()=>fin(true); cancel.onclick=()=>fin(false);
+    ok.onclick=()=>fin(true);cancel.onclick=()=>fin(false);
     ov.onclick=e=>{if(e.target===ov)fin(false);};
     ov.classList.add('show');
   });
@@ -729,15 +668,10 @@ function abrir(id){document.getElementById(id).classList.add('show');}
 function cerrar(id){document.getElementById(id).classList.remove('show');}
 document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('show');}));
 
-/* ── Init ── */
 (function init(){
   llenarSelect('r-fuerza',FUERZAS,'Elige…');
   llenarSelect('r-talla',TALLAS,'Elige…');
-  makeCombo(document.getElementById('r-grado'),opcionesGrado);
-  makeCombo(document.getElementById('r-arma'),opcionesArma);
-  makeCombo(document.getElementById('e-grado'),opcionesGrado);
-  makeCombo(document.getElementById('e-arma'),opcionesArma);
-  reloj(); pintarSesion(); cargar();
+  reloj();pintarSesion();cargar();
 })();
 </script>
 </body>
