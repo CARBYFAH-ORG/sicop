@@ -116,7 +116,7 @@
   .pill.pagoparte{background:#e0f2fe;color:#0369a1}
   .pill.nopago{background:var(--amber-soft);color:var(--amber-text)}
   .pill.talla{background:var(--primary-soft);color:var(--primary)}
-  .acts{display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap}
+  .acts{display:flex;gap:6px;flex-wrap:wrap}
   .tbl-empty{padding:46px;text-align:center;color:var(--text-dim);font-size:.9rem}
 
   .overlay{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:flex-start;justify-content:center;padding:40px 16px;z-index:60;overflow-y:auto}
@@ -227,7 +227,7 @@
             <div class="field full"><label>Nombre completo *</label><input id="r-nombre" autocomplete="off" placeholder="Ej. Juan Carlos Pérez López"></div>
             <div class="field"><label>Fuerza *</label><select id="r-fuerza"></select></div>
             <div class="field"><label>Talla *</label><select id="r-talla"></select></div>
-            <div class="field full"><label>Nombre de camisa</label><input id="r-camisa" autocomplete="off" placeholder="Ej. CARBAJAL-M"></div>
+            <div class="field full"><label>Nombre de camisa</label><input id="r-camisa" autocomplete="off" placeholder="Ej. Carbajal M."></div>
           </div>
           <div class="form-foot">
             <button class="btn" onclick="limpiarReg()">Limpiar</button>
@@ -288,7 +288,7 @@
 <!-- MODAL LOGIN -->
 <div class="overlay" id="ov-login">
   <div class="modal" style="max-width:400px">
-    <div class="modal-h" style="flex-direction:column;align-items:center;gap:8px;padding:20px 22px 14px;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAd4AAAILCAYAAABGhf3CAACAAElEQVR4Xuy9B1RU6Zrvfbv75JkTZubO9OluW8WAkYzknAsKCooqqFwFFcg5KgqYEEEMqOQcBEkKoiJIEEwomHOOra22sdtuA/zvU9W97vfdXvPNPWfOnPvdPmf/1nrWrl1sqvamtH7vf+/3ffd/+28MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMf0dcuXLlQ55P931bW5s+bmtvGerv7+8ZHBz8+OetWfP+6leu/PzkG0c+uP/UqT/4+9/DwMDAwPCT4vLly5sbGhr+paOj/aP//b//6J8//vjD/3Vn9eZ/ev9DR+uRr/ds/+7S6OA//fx3w8DAwMDwk+EfdnU07z557MBfXj6+9wdXp0c+PP3Jh/+H+sPv3R+/9k9nP/v8W3/fTH7/wP79b3M++PZfP3ew/+3nDvZ//OO+fn7mQH//3s7Ozn/TMBV1QUGB+NSpU3/9f//f33/wT77lN/79b37zrywMDgwMDE+uXLnyX3yBwO+M6dT+5/PFCZuyVJTOzhRFfW8m9VhAYV81SE0JIMj+dC9VAAAAAElFTkSuQmCC" style="width:56px;height:56px;object-fit:contain;"><h3>Acceso tesorero</h3><button class="modal-x" onclick="cerrar('ov-login')">&times;</button></div>
+    <div class="modal-h" style="flex-direction:column;align-items:center;gap:8px;padding:20px 22px 14px;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAd4AAAILCAYAAABGhf3CAACAAElEQVR4Xuy9B1RU6Zrvfbv75JkTZubO9OluW8WAkYzknAsKCooqqFwFFcg5KgqYEEEMqOQcBEkKoiJIEEwomHOOra22sdtuA/zvU9W97vfdXvPNPWfOnPvdPmf/1nrWrl1sqvamtH7vf+/3ffd/+28MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMf0dcuXLlQ57P931bW5s+bmtvGerv7+8ZHBz8+OetWfP+6leu/PzkG0c+uP/UqT/4+9/DwMDAwPCT4vLly5sbGhr+paOj/aP//b//6J8//vjD/3Vn9eZ/ev9DR+uRr/ds/+7S6OA//fx3w8DAwMDwk+EfdnU07z557MBfXj6+9wdXp0c+PP3Jh/+H+sPv3R+/9k9nP/v8W3/fTH7/wP79b3M++PZfP3ew/+3nDvZ//OO+fn7mQH//3s7Ozn/TMBV1QUGB+NSpU3/9f//f33/wT77lN/79b37zrywMDgwMDE+uXLnyX3yBwO+M6dT+5/PFCZuyVJTOzhRFfW8m9VhAYV81SE0JIMj+dC9VAAAAAElFTkSuQmCC" style="width:56px;height:56px;object-fit:contain;"><h3>Acceso tesorero</h3><button class="modal-x" onclick="cerrar('ov-login')">&times;</button></div>
     <div class="modal-b">
       <div class="field"><label>Usuario</label><input id="l-user" autocomplete="username" placeholder="tesorero"></div>
       <div class="field"><label>Contraseña</label><input id="l-pass" type="password" autocomplete="current-password" placeholder="••••••••"></div>
@@ -319,16 +319,17 @@
 <!-- MODAL EDITAR -->
 <div class="overlay" id="ov-edit">
   <div class="modal" style="max-width:420px">
-    <div class="modal-h"><h3>Editar registro</h3><button class="modal-x" onclick="cerrar('ov-edit')">&times;</button></div>
+    <div class="modal-h"><h3>Editar mis datos</h3><button class="modal-x" onclick="cerrar('ov-edit')">&times;</button></div>
     <div class="modal-b">
+      <p style="color:var(--text-dim);font-size:.85rem;margin-bottom:14px">Puedes editar tu nombre de camisa o corregir algún dato mal escrito.</p>
       <div class="field"><label>Nombre completo *</label><input id="e-nombre" autocomplete="off"></div>
-      <div class="field"><label>Nombre de camisa</label><input id="e-camisa" autocomplete="off"></div>
+      <div class="field"><label>Nombre de camisa</label><input id="e-camisa" autocomplete="off" placeholder="Ej. Carbajal M."></div>
       <div class="modal-b grid2" style="padding:0;gap:14px;display:grid;grid-template-columns:1fr 1fr">
         <div class="field"><label>Fuerza</label><select id="e-fuerza"></select></div>
         <div class="field"><label>Talla</label><select id="e-talla"></select></div>
       </div>
     </div>
-    <div class="modal-f"><button class="btn" onclick="cerrar('ov-edit')">Cancelar</button><button class="btn btn-primary" id="edit-save">Guardar</button></div>
+    <div class="modal-f"><button class="btn" onclick="cerrar('ov-edit')">Cancelar</button><button class="btn btn-primary" id="edit-save">Guardar cambios</button></div>
   </div>
 </div>
 
@@ -474,12 +475,18 @@ function pintarListado(){
     const pag=r.estado==='Pagó';
     const parte=r.estado==='Pagó parte';
     const pillCls=pag?'pago':(parte?'pagoparte':'nopago');
-    const acc=tes?`<td data-label="Acciones"><div class="acts">
-        ${(pag||parte)?`<button class="btn btn-sm" onclick="abrirRevertir('${r.id}')">Revertir</button>`:''}
-        ${!pag?`<button class="btn btn-sm btn-primary" onclick="abrirPago('${r.id}','${parte?'parte':''}')">Marcar pago</button>`:''}
-        <button class="btn btn-sm" onclick="abrirEditar('${r.id}')">Editar</button>
-        <button class="btn btn-sm btn-danger" onclick="borrarReg('${r.id}')">Borrar</button>
-      </div></td>`:'';
+    // Botones para todos los usuarios (editar sus propios datos)
+    const acc=`
+      <td data-label="Acciones">
+        <div class="acts">
+          <button class="btn btn-sm" onclick="abrirEditar('${r.id}')">Editar mis datos</button>
+          ${tes?`
+            ${(pag||parte)?`<button class="btn btn-sm" onclick="abrirRevertir('${r.id}')">Revertir</button>`:''}
+            ${!pag?`<button class="btn btn-sm btn-primary" onclick="abrirPago('${r.id}','${parte?'parte':''}')">Marcar pago</button>`:''}
+            <button class="btn btn-sm btn-danger" onclick="borrarReg('${r.id}')">Borrar</button>
+          `:''}
+        </div>
+      </td>`;
     return `<tr>
       <td data-label="Nombre"><div class="nm">${esc(r.nombre)}</div><div class="mono">${esc(r.id)}</div></td>
       <td data-label="Fuerza">${esc(r.fuerza||'—')}</td>
@@ -490,7 +497,7 @@ function pintarListado(){
       ${acc}
     </tr>`;
   }).join('');
-  const thAcc=tes?'<th></th>':'';
+  const thAcc='<th></th>';
   cont.innerHTML=`<table><thead><tr><th>Nombre</th><th>Fuerza</th><th>Talla</th><th>Nombre Camisa</th><th>Estado</th><th>Monto</th>${thAcc}</tr></thead><tbody>${rows}</tbody></table>`;
 }
 ['bus','fil-fuerza','fil-talla','fil-estado'].forEach(id=>{
@@ -526,7 +533,6 @@ async function abrirRevertir(id){
 }
 
 function abrirEditar(id){
-  if(!esTesorero())return;
   const r=REGS.find(x=>x.id===id);if(!r)return;
   editId=id;
   document.getElementById('e-nombre').value=r.nombre||'';
@@ -546,10 +552,11 @@ document.getElementById('edit-save').addEventListener('click',async function(){
   if(!datos.nombre){toast('El nombre es obligatorio.','err');return;}
   this.disabled=true;
   try{const res=await api(datos,'POST');if(!res.ok)throw new Error(res.error);
-    toast('Registro actualizado.','ok');cerrar('ov-edit');await cargar();
+    toast('Datos actualizados.','ok');cerrar('ov-edit');await cargar();
   }catch(e){toast(e.message,'err');}finally{this.disabled=false;}
 });
 async function borrarReg(id){
+  if(!esTesorero()){toast('Solo el tesorero puede borrar.','err');return;}
   const r=REGS.find(x=>x.id===id);
   const ok=await confirmar({titulo:'Borrar registro',msg:'¿Seguro que quieres borrar a "'+((r&&r.nombre)||id)+'"? Esta acción no se puede deshacer.',ok:'Sí, borrar',danger:true});
   if(!ok)return;
