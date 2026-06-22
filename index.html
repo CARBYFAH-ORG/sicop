@@ -528,6 +528,7 @@ async function abrirRevertir(id){
   }catch(e){toast(e.message,'err');}
 }
 
+// FIX: Edición sin necesidad de token de tesorero
 function abrirEditar(id){
   const r=REGS.find(x=>x.id===id);if(!r)return;
   editId=id;
@@ -539,7 +540,8 @@ function abrirEditar(id){
   abrir('ov-edit');
 }
 document.getElementById('edit-save').addEventListener('click',async function(){
-  const datos={action:'editar',token:S.token,id:editId,
+  const datos={action:'editar_sin_token', // Endpoint sin necesidad de token
+    id:editId,
     nombre:document.getElementById('e-nombre').value.trim(),
     fuerza:document.getElementById('e-fuerza').value,
     talla:document.getElementById('e-talla').value,
