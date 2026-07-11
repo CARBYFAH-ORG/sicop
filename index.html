@@ -112,6 +112,11 @@
   .btn-danger:hover{background:var(--red-soft)}
   .btn-sm{padding:6px 10px;font-size:.78rem;border-radius:8px}
 
+  /* ── SPINNER ── */
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .spin-ic{width:14px;height:14px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin .65s linear infinite;flex:none;opacity:.85}
+  .btn:disabled,.btn-primary:disabled,.btn-danger:disabled{opacity:.7;cursor:not-allowed}
+
   /* ── TABLE ── */
   .tbl-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow-x:auto}
   table{width:100%;border-collapse:collapse}
@@ -459,6 +464,17 @@ async function api(params,method='GET'){
 function chk(res){if(res&&res.authError){salirTesorero(true);throw new Error('Sesión expirada');}return res;}
 
 // ── UTILS ──
+// ── SPINNER HELPERS ──
+function btnLoad(el,label){
+  el._origHTML=el.innerHTML;
+  el.disabled=true;
+  el.innerHTML=`<span class="spin-ic"></span>${label}`;
+}
+function btnDone(el){
+  el.disabled=false;
+  el.innerHTML=el._origHTML||el.innerHTML;
+}
+
 function toast(msg,tipo){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(tipo?' '+tipo:'');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),3200);}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 function esTesorero(){return !!S.token;}
@@ -518,10 +534,10 @@ document.getElementById('reg-save').addEventListener('click',async function(){
   if(!datos.nombre){toast('Escribe el nombre completo.','err');return;}
   if(!datos.fuerza){toast('Selecciona la fuerza.','err');return;}
   if(!datos.talla){toast('Selecciona la talla.','err');return;}
-  this.disabled=true;this.textContent='Registrando…';
+  btnLoad(this,'Registrando…');
   try{const res=await api(datos,'POST');if(!res.ok)throw new Error(res.error);toast('¡Registrado correctamente!','ok');limpiarReg();await cargar();}
   catch(e){toast(e.message,'err');}
-  finally{this.disabled=false;this.textContent='Registrarme';}
+  finally{btnDone(this);}
 });
 
 // ── LISTADO ──
@@ -568,11 +584,11 @@ function pintarListado(){
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M3 11l1-7h16l1 7"/><path d="M3 11h18"/><path d="M5 11v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"/></svg>
         ${r.plato?'Cambiar plato':'Elegir plato'}</button>
       ${tes?`
-        ${(pag||parte)?`<button class="btn btn-sm" onclick="abrirRevertir('${r.id}')">Revertir</button>`:''}
+        ${(pag||parte)?`<button class="btn btn-sm" onclick="abrirRevertir('${r.id}',this)">Revertir</button>`:''}
         ${!pag?`<button class="btn btn-sm btn-primary" onclick="abrirPago('${r.id}','${parte?'parte':''}')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
           Marcar pago</button>`:''}
-        <button class="btn btn-sm btn-danger" onclick="borrarReg('${r.id}')">
+        <button class="btn btn-sm btn-danger" onclick="borrarReg('${r.id}',this)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
           Borrar</button>`:''}
     </div></td>`;
@@ -612,18 +628,19 @@ document.getElementById('pago-save').addEventListener('click',async function(){
   const monto=parseFloat(document.getElementById('pago-monto').value);
   const tipo=document.getElementById('pago-tipo').value;
   if(isNaN(monto)||monto<0){toast('Escribe un monto válido.','err');return;}
-  this.disabled=true;
+  btnLoad(this,'Guardando…');
   try{const res=await api({action:'pagar',token:S.token,id:pagoId,monto,tipo},'POST');if(!res.ok)throw new Error(res.error);
     toast('Pago registrado.','ok');cerrar('ov-pago');await cargar();}
-  catch(e){toast(e.message,'err');}finally{this.disabled=false;}
+  catch(e){toast(e.message,'err');}finally{btnDone(this);}
 });
-async function abrirRevertir(id){
+async function abrirRevertir(id,btn){
   const r=REGS.find(x=>x.id===id);
   const ok=await confirmar({titulo:'Revertir pago',msg:'¿Marcar a "'+((r&&r.nombre)||id)+'" como No pagó y poner el monto en 0?',ok:'Sí, revertir',danger:true});
   if(!ok)return;
+  if(btn)btnLoad(btn,'Revirtiendo…');
   try{const res=await api({action:'despagar',token:S.token,id},'POST');if(!res.ok)throw new Error(res.error);
     toast('Pago revertido.','ok');await cargar();}
-  catch(e){toast(e.message,'err');}
+  catch(e){toast(e.message,'err');if(btn)btnDone(btn);}
 }
 
 // ── EDITAR (sin login) ──
@@ -640,10 +657,10 @@ function abrirEditar(id){
 document.getElementById('edit-save').addEventListener('click',async function(){
   const datos={action:'editar_sin_token',id:editId,nombre:document.getElementById('e-nombre').value.trim(),fuerza:document.getElementById('e-fuerza').value,talla:document.getElementById('e-talla').value,nombreCamisa:document.getElementById('e-camisa').value.trim()};
   if(!datos.nombre){toast('El nombre es obligatorio.','err');return;}
-  this.disabled=true;
+  btnLoad(this,'Guardando…');
   try{const res=await api(datos,'POST');if(!res.ok)throw new Error(res.error);
     toast('¡Datos actualizados!','ok');cerrar('ov-edit');await cargar();}
-  catch(e){toast(e.message,'err');}finally{this.disabled=false;}
+  catch(e){toast(e.message,'err');}finally{btnDone(this);}
 });
 
 // ── PLATO (público) ──
@@ -666,11 +683,11 @@ function selPlato(id,el){
 }
 document.getElementById('plato-save').addEventListener('click',async function(){
   if(!platoSel){toast('Elige un plato primero.','err');return;}
-  this.disabled=true;
+  btnLoad(this,'Guardando…');
   try{const res=await api({action:'elegir_plato',id:platoId,plato:platoSel},'POST');
     if(!res.ok)throw new Error(res.error);
     toast('¡Plato elegido!','ok');cerrar('ov-plato');await cargar();}
-  catch(e){toast(e.message,'err');}finally{this.disabled=false;}
+  catch(e){toast(e.message,'err');}finally{btnDone(this);}
 });
 
 // ── ENTREGAS (tesorero, switch) ──
@@ -678,29 +695,36 @@ async function toggleEntrega(chk,tipo,id){
   if(!esTesorero()){chk.checked=!chk.checked;toast('Solo el tesorero puede registrar entregas.','err');return;}
   const valor=chk.checked;
   chk.disabled=true;
+  // Spinner visual en el label del switch
+  const wrap=chk.closest('.sw-wrap');
+  const span=wrap?wrap.querySelector('.sw-ok,.sw-no'):null;
+  if(span){span.innerHTML='<span class="spin-ic" style="vertical-align:middle"></span>';}
   const action=tipo==='camisa'?'entregar_camisa':'entregar_comida';
   try{
     const res=await api({action,token:S.token,id,valor:String(valor)},'POST');
     if(!res.ok)throw new Error(res.error);
     const r=REGS.find(x=>x.id===id);
     if(r){if(tipo==='camisa')r.camisaEntregada=valor;else r.comidaEntregada=valor;}
-    // actualizar solo el label del switch sin repintar toda la tabla
-    const span=chk.parentElement.nextElementSibling;
     if(span){span.textContent=valor?'Entregada':'Pendiente';span.className=valor?'sw-ok':'sw-no';}
     toast((tipo==='camisa'?'Camisa':'Comida')+' '+(valor?'marcada como entregada':'revertida a pendiente')+'.','ok');
-  }catch(e){chk.checked=!valor;toast(e.message,'err');}
+  }catch(e){
+    chk.checked=!valor;
+    if(span){span.textContent=!valor?'Entregada':'Pendiente';span.className=!valor?'sw-ok':'sw-no';}
+    toast(e.message,'err');
+  }
   finally{chk.disabled=false;}
 }
 
 // ── BORRAR ──
-async function borrarReg(id){
+async function borrarReg(id,btn){
   if(!esTesorero()){toast('Solo el tesorero puede borrar.','err');return;}
   const r=REGS.find(x=>x.id===id);
   const ok=await confirmar({titulo:'Borrar registro',msg:'¿Seguro que quieres borrar a "'+((r&&r.nombre)||id)+'"? Esta acción no se puede deshacer.',ok:'Sí, borrar',danger:true});
   if(!ok)return;
+  if(btn)btnLoad(btn,'Borrando…');
   try{const res=await api({action:'borrar',token:S.token,id},'POST');if(!res.ok)throw new Error(res.error);
     toast('Registro borrado.','ok');await cargar();}
-  catch(e){toast(e.message,'err');}
+  catch(e){toast(e.message,'err');if(btn)btnDone(btn);}
 }
 
 // ── REPORTES ──
@@ -782,7 +806,7 @@ async function entrar(){
   const pass=document.getElementById('l-pass').value;
   const err=document.getElementById('l-err');err.classList.remove('show');
   if(!usuario||!pass){err.textContent='Escribe usuario y contraseña.';err.classList.add('show');return;}
-  const btn=document.getElementById('l-btn');btn.disabled=true;btn.textContent='Entrando…';
+  const btn=document.getElementById('l-btn');btnLoad(btn,'Entrando…');
   try{
     const res=await api({action:'login',usuario,pass},'POST');
     if(!res.ok){err.textContent=res.error||'No se pudo iniciar sesión.';err.classList.add('show');return;}
@@ -791,7 +815,7 @@ async function entrar(){
     cerrar('ov-login');pintarSesion();pintarListado();
     toast('Bienvenido, '+S.nombre+'.','ok');
   }catch(e){err.textContent=e.message;err.classList.add('show');}
-  finally{btn.disabled=false;btn.textContent='Iniciar sesión';}
+  finally{btnDone(btn);}
 }
 function salirTesorero(expirada){
   try{if(S.token)api({action:'logout',token:S.token},'POST');}catch(e){}
@@ -823,9 +847,9 @@ function abrirCambiarPass(){document.getElementById('p-new').value='';abrir('ov-
 document.getElementById('pass-save').addEventListener('click',async function(){
   const pass=document.getElementById('p-new').value;
   if(pass.length<5){toast('Mínimo 5 caracteres.','err');return;}
-  this.disabled=true;
+  btnLoad(this,'Guardando…');
   try{const r=await api({action:'cambiar_pass',token:S.token,pass},'POST');if(!r.ok)throw new Error(r.error);toast('Contraseña cambiada.','ok');cerrar('ov-pass');}
-  catch(e){toast(e.message,'err');}finally{this.disabled=false;}
+  catch(e){toast(e.message,'err');}finally{btnDone(this);}
 });
 
 // ── CONFIRMAR ──
