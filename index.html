@@ -26,7 +26,6 @@
   a{text-decoration:none}
   button{font-family:inherit;cursor:pointer}
   .hidden{display:none!important}
-
   #app{display:flex;min-height:100vh}
 
   /* ── SIDEBAR ── */
@@ -41,8 +40,6 @@
   .nav a:hover{background:var(--side-2);color:#fff}
   .nav a.active{background:var(--primary);color:#fff}
   .nav a.active svg{opacity:1}
-
-  /* ── SIDEBAR FOOTER ── */
   .sidebar .sfoot{padding:12px 14px;border-top:1px solid #1e293b;display:flex;flex-direction:column;gap:8px}
   .sfoot-name{font-size:.84rem;color:#fff;font-weight:600;line-height:1.2}
   .sfoot-rol{font-size:.72rem;color:#64748b}
@@ -88,16 +85,6 @@
   .panel-h h3{font-size:1rem;font-weight:600}
   .panel-b{padding:18px 20px}
 
-  /* ── FORM ── */
-  .form-card{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);max-width:620px;padding:8px 4px}
-  .reg-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:20px 22px}
-  .field{margin:0}
-  .field.full{grid-column:1/-1}
-  .field label{display:block;font-size:.82rem;font-weight:500;color:var(--text-dim);margin-bottom:6px}
-  .field input,.field select{width:100%;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:11px 13px;font-size:.94rem;color:var(--text);font-family:inherit}
-  .field input:focus,.field select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
-  .form-foot{display:flex;justify-content:flex-end;gap:10px;padding:16px 22px;border-top:1px solid var(--border)}
-
   /* ── TOOLBAR / BUTTONS ── */
   .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
   .toolbar input,.toolbar select{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-size:.9rem;color:var(--text);font-family:inherit}
@@ -139,7 +126,6 @@
 
   /* ── SWITCH ── */
   .sw-wrap{display:flex;align-items:center;gap:8px}
-  .sw-label{font-size:.78rem;color:var(--text-dim);font-weight:500}
   .sw{position:relative;display:inline-block;width:38px;height:22px;flex:none}
   .sw input{opacity:0;width:0;height:0}
   .sw-slider{position:absolute;inset:0;border-radius:22px;background:#cbd5e1;cursor:pointer;transition:.2s}
@@ -164,6 +150,9 @@
   .cf-ic svg{width:24px;height:24px}
   .cf-ic.danger{background:var(--red-soft);color:var(--red-text)}
   .cf-ic.info{background:var(--primary-soft);color:var(--primary)}
+  .field label{display:block;font-size:.82rem;font-weight:500;color:var(--text-dim);margin-bottom:6px}
+  .field input,.field select{width:100%;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:11px 13px;font-size:.94rem;color:var(--text);font-family:inherit}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
   .login-err{margin-top:6px;background:var(--red-soft);border:1px solid #fca5a5;color:var(--red-text);font-size:.83rem;padding:10px 12px;border-radius:9px;display:none}
   .login-err.show{display:block}
 
@@ -207,7 +196,6 @@
     .topbar .clock{display:none}
     .topbar h2{font-size:1.05rem}
     .page-title{font-size:1.25rem}
-    .reg-grid{grid-template-columns:1fr}
     .cards{grid-template-columns:1fr 1fr;gap:12px}
     .stat{padding:14px 16px}.stat .n{font-size:1.4rem}
     .toolbar input{min-width:0}
@@ -231,7 +219,7 @@
 <div id="app">
   <aside class="sidebar" id="sidebar">
     <div class="brand">
-      <svg viewBox="0 0 40 40" style="width:36px;height:36px;flex:none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 40 40" style="width:36px;height:36px;flex:none" fill="none">
         <rect width="40" height="40" rx="9" fill="#465fff"/>
         <path d="M12 28V18l8-6 8 6v10H24v-6h-8v6H12z" fill="#fff" opacity=".9"/>
         <path d="M20 12l10 7.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
@@ -241,10 +229,10 @@
     </div>
     <nav class="nav">
       <div class="grp">Principal</div>
-      <a data-view="registro" class="active">
+      <a data-view="registro" id="nav-registro" class="hidden">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
-        Registrarse</a>
-      <a data-view="listado">
+        Registrar persona</a>
+      <a data-view="listado" class="active">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
         Listado</a>
       <a data-view="reportes">
@@ -263,32 +251,32 @@
       <button class="menu-btn" id="menu-btn">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
       </button>
-      <h2 id="tb-title">Registrarse</h2>
+      <h2 id="tb-title">Listado</h2>
       <div class="right"><span class="clock" id="clock">—</span></div>
     </div>
 
     <div class="content">
 
-      <!-- REGISTRARSE -->
-      <section class="view active" id="v-registro">
-        <div class="page-title">Registro de personal</div>
-        <div class="page-sub">Completa tus datos para quedar registrado. El pago lo confirma el tesorero.</div>
-        <div class="form-card">
-          <div class="reg-grid">
-            <div class="field full"><label>Nombre completo *</label><input id="r-nombre" autocomplete="off" placeholder="Ej. Juan Carlos Pérez López"></div>
+      <!-- REGISTRO (solo tesorero) -->
+      <section class="view" id="v-registro">
+        <div class="page-title">Registrar persona</div>
+        <div class="page-sub">Agrega un nuevo integrante al sistema.</div>
+        <div class="form-card" style="max-width:620px;background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:8px 4px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:20px 22px">
+            <div class="field" style="grid-column:1/-1"><label>Nombre completo *</label><input id="r-nombre" autocomplete="off" placeholder="Ej. Juan Carlos Pérez López"></div>
             <div class="field"><label>Fuerza *</label><select id="r-fuerza"></select></div>
             <div class="field"><label>Talla *</label><select id="r-talla"></select></div>
-            <div class="field full"><label>Nombre para la camisa <span style="color:var(--text-soft);font-weight:400">(opcional)</span></label><input id="r-camisa" autocomplete="off" placeholder="Ej. Carbajal M."></div>
+            <div class="field" style="grid-column:1/-1"><label>Nombre para la camisa <span style="color:var(--text-soft);font-weight:400">(opcional)</span></label><input id="r-camisa" autocomplete="off" placeholder="Ej. Carbajal M."></div>
           </div>
-          <div class="form-foot">
+          <div style="display:flex;justify-content:flex-end;gap:10px;padding:16px 22px;border-top:1px solid var(--border)">
             <button class="btn" onclick="limpiarReg()">Limpiar</button>
-            <button class="btn btn-primary" id="reg-save">Registrarme</button>
+            <button class="btn btn-primary" id="reg-save">Registrar</button>
           </div>
         </div>
       </section>
 
       <!-- LISTADO -->
-      <section class="view" id="v-listado">
+      <section class="view active" id="v-listado">
         <div class="page-title">Listado de registros</div>
         <div class="page-sub">Personal registrado y estado de su pago. Puedes editar tus datos y elegir tu plato sin iniciar sesión.</div>
         <div class="toolbar">
@@ -318,9 +306,11 @@
           <div class="panel-h"><h3>Platos elegidos</h3></div>
           <div class="panel-b bars" id="rep-platos"></div>
         </div>
-        <div class="toolbar"><div style="flex:1"></div><button class="btn btn-primary" onclick="exportarExcel()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Exportar a Excel</button></div>
+        <div class="toolbar"><div style="flex:1"></div>
+          <button class="btn btn-primary" onclick="exportarExcel()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Exportar a Excel</button>
+        </div>
       </section>
 
       <!-- AYUDA -->
@@ -383,7 +373,7 @@
     <div class="modal-b">
       <p style="color:var(--text-dim);font-size:.85rem;margin-bottom:16px">Corrige tu información o agrega el nombre para la camisa. No necesitas iniciar sesión.</p>
       <div class="field"><label>Nombre completo *</label><input id="e-nombre" autocomplete="off"></div>
-      <div class="field"><label>Nombre para la camisa <span style="color:var(--text-soft);font-weight:400">(opcional)</span></label><input id="e-camisa" autocomplete="off" placeholder="Ej. Carbajal M."></div>
+      <div class="field"><label>Nombre en la camisa <span style="color:var(--text-soft);font-weight:400">(opcional)</span></label><input id="e-camisa" autocomplete="off" placeholder="Ej. Carbajal M."></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
         <div class="field"><label>Fuerza</label><select id="e-fuerza"></select></div>
         <div class="field"><label>Talla</label><select id="e-talla"></select></div>
@@ -430,14 +420,13 @@
 
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbzrRs4qDd0EV6TFRdIiKGwbSAO1ueCBQRIPRqLV_puStf9eChWVhrwL7-uv6z2X_fFrRw/exec";
-
 const FUERZAS = ['Ejército','Fuerza Aérea','Fuerza Naval'];
 const TALLAS  = ['XS','S','M','L','XL','XXL','XXXL'];
 const PLATOS  = [
-  { id:'Chuleta con tajadas',    nombre:'Chuleta con tajadas',     desc:'Bandeja de tajadas, una chuleta, un chorizo bañados en salsa barbacoa, chimichurri, aderezo y escabeche.' },
-  { id:'Chuleta típica',         nombre:'Chuleta típica',          desc:'Frijoles fritos, queso, chismol, tajadas preparadas, una chuleta, un chorizo y dos tortillas.' },
-  { id:'Tajo de cerdo típico',   nombre:'Tajo de cerdo típico',    desc:'Frijoles fritos, queso, chismol, tajadas preparadas, trozos de tajo, un chorizo y dos tortillas.' },
-  { id:'Tajo de cerdo con tajadas', nombre:'Tajo de cerdo con tajadas', desc:'Bandeja de tajadas con cubos de tajo de cerdo, un chorizo, bañados en salsa barbacoa, chimichurri, aderezo y escabeche.' }
+  { id:'Chuleta con tajadas',       desc:'Bandeja de tajadas, una chuleta, un chorizo bañados en salsa barbacoa, chimichurri, aderezo y escabeche.' },
+  { id:'Chuleta típica',            desc:'Frijoles fritos, queso, chismol, tajadas preparadas, una chuleta, un chorizo y dos tortillas.' },
+  { id:'Tajo de cerdo típico',      desc:'Frijoles fritos, queso, chismol, tajadas preparadas, trozos de tajo, un chorizo y dos tortillas.' },
+  { id:'Tajo de cerdo con tajadas', desc:'Bandeja de tajadas con cubos de tajo de cerdo, un chorizo, bañados en salsa barbacoa, chimichurri, aderezo y escabeche.' }
 ];
 
 const _mem={};
@@ -463,29 +452,21 @@ async function api(params,method='GET'){
 }
 function chk(res){if(res&&res.authError){salirTesorero(true);throw new Error('Sesión expirada');}return res;}
 
-// ── UTILS ──
 // ── SPINNER HELPERS ──
-function btnLoad(el,label){
-  el._origHTML=el.innerHTML;
-  el.disabled=true;
-  el.innerHTML=`<span class="spin-ic"></span>${label}`;
-}
-function btnDone(el){
-  el.disabled=false;
-  el.innerHTML=el._origHTML||el.innerHTML;
-}
+function btnLoad(el,label){el._origHTML=el.innerHTML;el.disabled=true;el.innerHTML=`<span class="spin-ic"></span>${label}`;}
+function btnDone(el){el.disabled=false;el.innerHTML=el._origHTML||el.innerHTML;}
 
+// ── UTILS ──
 function toast(msg,tipo){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(tipo?' '+tipo:'');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),3200);}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 function esTesorero(){return !!S.token;}
 function fmtL(n){return 'L. '+(Number(n)||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
 function pad(n){return String(n).padStart(2,'0');}
-
 function reloj(){const d=new Date();let h=d.getHours();const a=h<12?'a.m.':'p.m.';h=h%12||12;document.getElementById('clock').textContent=pad(d.getDate())+'/'+pad(d.getMonth()+1)+'/'+d.getFullYear()+' '+h+':'+pad(d.getMinutes())+' '+a;}
 setInterval(reloj,1000);reloj();
 
 // ── NAV ──
-const titulos={registro:'Registrarse',listado:'Listado',reportes:'Reportes',ayuda:'Ayuda'};
+const titulos={registro:'Registrar persona',listado:'Listado',reportes:'Reportes',ayuda:'Ayuda'};
 document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',e=>{
   e.preventDefault();
   document.querySelectorAll('.nav a').forEach(x=>x.classList.remove('active'));
@@ -500,7 +481,6 @@ document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',e=>{
 }));
 document.getElementById('menu-btn').addEventListener('click',()=>document.getElementById('sidebar').classList.toggle('open'));
 
-// ── SELECTS ──
 function llenarSelect(id,arr,placeholder){
   const el=document.getElementById(id);
   el.innerHTML=(placeholder?`<option value="">${esc(placeholder)}</option>`:'')+arr.map(v=>`<option>${esc(v)}</option>`).join('');
@@ -530,6 +510,7 @@ function limpiarReg(){
   document.getElementById('r-camisa').value='';
 }
 document.getElementById('reg-save').addEventListener('click',async function(){
+  if(!esTesorero()){toast('Solo el tesorero puede registrar.','err');return;}
   const datos={action:'crear',nombre:document.getElementById('r-nombre').value.trim(),fuerza:document.getElementById('r-fuerza').value,talla:document.getElementById('r-talla').value,nombreCamisa:document.getElementById('r-camisa').value.trim()};
   if(!datos.nombre){toast('Escribe el nombre completo.','err');return;}
   if(!datos.fuerza){toast('Selecciona la fuerza.','err');return;}
@@ -563,7 +544,6 @@ function pintarListado(){
     const pag=r.estado==='Pagó', parte=r.estado==='Pagó parte';
     const pillCls=pag?'pago':(parte?'pagoparte':'nopago');
 
-    // Switches de entrega (solo tesorero)
     const swCamisa=tes?`
       <div class="sw-wrap">
         <label class="sw"><input type="checkbox" ${r.camisaEntregada?'checked':''} onchange="toggleEntrega(this,'camisa','${r.id}')"><span class="sw-slider"></span></label>
@@ -671,7 +651,7 @@ function abrirPlato(id){
   const grid=document.getElementById('platos-grid');
   grid.innerHTML=PLATOS.map(p=>`
     <button class="plato-card${platoSel===p.id?' sel':''}" onclick="selPlato('${p.id}',this)">
-      <div class="pc-name">${esc(p.nombre)}</div>
+      <div class="pc-name">${esc(p.id)}</div>
       <div class="pc-desc">${esc(p.desc)}</div>
     </button>`).join('');
   abrir('ov-plato');
@@ -690,12 +670,11 @@ document.getElementById('plato-save').addEventListener('click',async function(){
   catch(e){toast(e.message,'err');}finally{btnDone(this);}
 });
 
-// ── ENTREGAS (tesorero, switch) ──
+// ── ENTREGAS (tesorero) ──
 async function toggleEntrega(chk,tipo,id){
   if(!esTesorero()){chk.checked=!chk.checked;toast('Solo el tesorero puede registrar entregas.','err');return;}
   const valor=chk.checked;
   chk.disabled=true;
-  // Spinner visual en el label del switch
   const wrap=chk.closest('.sw-wrap');
   const span=wrap?wrap.querySelector('.sw-ok,.sw-no'):null;
   if(span){span.innerHTML='<span class="spin-ic" style="vertical-align:middle"></span>';}
@@ -749,7 +728,6 @@ function pintarReportes(){
   ];
   document.getElementById('rep-cards').innerHTML=cards.map(c=>`<div class="stat"><div class="ico ${c.ic}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${c.svg}</svg></div><div class="n">${c.n}</div><div class="l">${c.l}</div></div>`).join('');
 
-  // Por fuerza
   const fz={};
   REGS.forEach(r=>{const f=r.fuerza||'(sin fuerza)';if(!fz[f])fz[f]={total:0,pag:0,parte:0,rec:0,cam:0,com:0};fz[f].total++;if(r.estado==='Pagó'){fz[f].pag++;fz[f].rec+=Number(r.monto)||0;}else if(r.estado==='Pagó parte'){fz[f].parte++;fz[f].rec+=Number(r.monto)||0;}if(r.camisaEntregada)fz[f].cam++;if(r.comidaEntregada)fz[f].com++;});
   const ks=Object.keys(fz).sort();
@@ -758,7 +736,6 @@ function pintarReportes(){
     ks.map(k=>`<tr><td><b>${esc(k)}</b></td><td>${fz[k].total}</td><td>${fz[k].pag}</td><td>${fz[k].parte}</td><td>${fz[k].total-fz[k].pag-fz[k].parte}</td><td><span class="money">${fmtL(fz[k].rec)}</span></td><td>${fz[k].cam}</td><td>${fz[k].com}</td></tr>`).join('')+
     `</tbody></table></div>`:'<div class="tbl-empty">Aún no hay registros.</div>';
 
-  // Tallas
   const tl={};REGS.forEach(r=>{const t=r.talla||'(sin talla)';tl[t]=(tl[t]||0)+1;});
   const ordenadas=TALLAS.filter(t=>tl[t]).concat(Object.keys(tl).filter(t=>!TALLAS.includes(t)));
   const maxT=Math.max(1,...Object.values(tl));
@@ -766,8 +743,7 @@ function pintarReportes(){
     ordenadas.map(t=>`<div class="bar-row"><div class="bl">Talla ${esc(t)}</div><div class="bt"><div class="bf" style="width:${tl[t]/maxT*100}%"></div></div><div class="bn">${tl[t]}</div></div>`).join('')
     :'<div class="tbl-empty">Aún no hay registros.</div>';
 
-  // Platos
-  const pl={};REGS.forEach(r=>{if(r.plato){pl[r.plato]=(pl[r.plato]||0)+1;}});
+  const pl={};REGS.forEach(r=>{if(r.plato)pl[r.plato]=(pl[r.plato]||0)+1;});
   const maxP=Math.max(1,...Object.values(pl));
   const ordenPlatos=PLATOS.map(p=>p.id).filter(p=>pl[p]);
   document.getElementById('rep-platos').innerHTML=ordenPlatos.length?
@@ -776,6 +752,7 @@ function pintarReportes(){
     :'<div class="tbl-empty">Nadie ha elegido plato aún.</div>';
 }
 
+// ── EXPORTAR EXCEL ──
 function exportarExcel(){
   if(typeof XLSX==='undefined'){toast('No se pudo cargar el exportador.','err');return;}
   if(!REGS.length){toast('No hay datos para exportar.','err');return;}
@@ -784,7 +761,7 @@ function exportarExcel(){
   const TALLAS_ORD=['XS','S','M','L','XL','XXL','XXXL'];
   const wb=XLSX.utils.book_new();
 
-  // ── Hoja por fuerza ──
+  // ── Una hoja por fuerza ──
   FUERZAS_XLS.forEach(fuerza=>{
     const regs=REGS.filter(r=>r.fuerza===fuerza);
     const filas=regs.map((r,i)=>({
@@ -794,73 +771,56 @@ function exportarExcel(){
       'Talla': r.talla||'—',
       'Estado pago': r.estado||''
     }));
-    // Si no hay registros igual creamos hoja vacía con cabeceras
     const ws=XLSX.utils.json_to_sheet(
       filas.length ? filas : [{'N°':'','Nombre':'','Nombre en camisa':'','Talla':'','Estado pago':''}]
     );
     ws['!cols']=[{wch:5},{wch:34},{wch:20},{wch:8},{wch:12}];
-
-    // Fila de totales al final
     if(filas.length){
-      const nextRow=filas.length+2; // +1 header +1 data rows start at 2
-      ws['A'+(nextRow)]={v:'TOTAL',t:'s'};
-      ws['B'+(nextRow)]={v:filas.length+' personas',t:'s'};
-      if(!ws['!ref']) ws['!ref']='A1:E'+nextRow;
-      else ws['!ref']='A1:E'+nextRow;
+      const tr=filas.length+2;
+      ws['A'+tr]={v:'TOTAL',t:'s'};
+      ws['B'+tr]={v:filas.length+' personas',t:'s'};
+      ws['!ref']='A1:E'+tr;
     }
     XLSX.utils.book_append_sheet(wb,ws,fuerza);
   });
 
-  // ── Hoja Resumen ──
-  const resumen=[];
-  // Encabezado del bloque por fuerza
+  // ── Resumen por fuerza ──
   const allTallas=[...new Set(REGS.map(r=>r.talla).filter(Boolean))];
   const tallasOrd=TALLAS_ORD.filter(t=>allTallas.includes(t)).concat(allTallas.filter(t=>!TALLAS_ORD.includes(t)));
+  const resumen=[];
 
   FUERZAS_XLS.forEach(fuerza=>{
     const regs=REGS.filter(r=>r.fuerza===fuerza);
-    if(!regs.length) return;
-    // Título de fuerza
+    if(!regs.length)return;
     resumen.push({'Fuerza':fuerza,'Talla':'','Cantidad':'','Pagaron':'','No pagaron':''});
-    // Por talla dentro de la fuerza
     tallasOrd.forEach(talla=>{
       const sub=regs.filter(r=>r.talla===talla);
-      if(!sub.length) return;
+      if(!sub.length)return;
       resumen.push({
-        'Fuerza':'',
-        'Talla': talla,
-        'Cantidad': sub.length,
-        'Pagaron': sub.filter(r=>r.estado==='Pagó'||r.estado==='Pagó parte').length,
-        'No pagaron': sub.filter(r=>r.estado==='No pagó').length
+        'Fuerza':'','Talla':talla,'Cantidad':sub.length,
+        'Pagaron':sub.filter(r=>r.estado==='Pagó'||r.estado==='Pagó parte').length,
+        'No pagaron':sub.filter(r=>r.estado==='No pagó').length
       });
     });
-    // Subtotal fuerza
     resumen.push({
-      'Fuerza':'Subtotal '+fuerza,
-      'Talla':'',
-      'Cantidad': regs.length,
-      'Pagaron': regs.filter(r=>r.estado==='Pagó'||r.estado==='Pagó parte').length,
-      'No pagaron': regs.filter(r=>r.estado==='No pagó').length
+      'Fuerza':'Subtotal '+fuerza,'Talla':'','Cantidad':regs.length,
+      'Pagaron':regs.filter(r=>r.estado==='Pagó'||r.estado==='Pagó parte').length,
+      'No pagaron':regs.filter(r=>r.estado==='No pagó').length
     });
     resumen.push({'Fuerza':'','Talla':'','Cantidad':'','Pagaron':'','No pagaron':''});
   });
-
-  // Total general
   resumen.push({
-    'Fuerza':'TOTAL GENERAL',
-    'Talla':'',
-    'Cantidad': REGS.length,
-    'Pagaron': REGS.filter(r=>r.estado==='Pagó'||r.estado==='Pagó parte').length,
-    'No pagaron': REGS.filter(r=>r.estado==='No pagó').length
+    'Fuerza':'TOTAL GENERAL','Talla':'','Cantidad':REGS.length,
+    'Pagaron':REGS.filter(r=>r.estado==='Pagó'||r.estado==='Pagó parte').length,
+    'No pagaron':REGS.filter(r=>r.estado==='No pagó').length
   });
-
   const wsRes=XLSX.utils.json_to_sheet(resumen);
-  wsRes['!cols']=[{wch:20},{wch:8},{wch:10},{wch:10},{wch:12}];
+  wsRes['!cols']=[{wch:22},{wch:8},{wch:10},{wch:10},{wch:12}];
   XLSX.utils.book_append_sheet(wb,wsRes,'Resumen por Fuerza');
 
   const f=new Date();
   XLSX.writeFile(wb,'SICOP_camisas_'+f.getFullYear()+pad(f.getMonth()+1)+pad(f.getDate())+'.xlsx');
-  toast('Excel generado — '+FUERZAS_XLS.length+' fuerzas + resumen.','ok');
+  toast('Excel generado — 3 fuerzas + resumen.','ok');
 }
 
 // ── LOGIN / SESIÓN ──
@@ -892,18 +852,28 @@ function salirTesorero(expirada){
 }
 function pintarSesion(){
   const f=document.getElementById('sfoot');
+  const navReg=document.getElementById('nav-registro');
   if(esTesorero()){
+    navReg.classList.remove('hidden');
+    // llenar selects del form de registro
+    llenarSelect('r-fuerza',FUERZAS,'Elige…');
+    llenarSelect('r-talla',TALLAS,'Elige…');
     f.innerHTML=`
-      <div>
-        <div class="sfoot-name">${esc(S.nombre)}</div>
-        <div class="sfoot-rol">Tesorero · sesión activa</div>
-      </div>
+      <div><div class="sfoot-name">${esc(S.nombre)}</div><div class="sfoot-rol">Tesorero · sesión activa</div></div>
       <button class="btn-logout" onclick="salirTesorero(false)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 12H3m12 0-4-4m4 4-4 4M9 4h7a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H9"/></svg>
-        Cerrar sesión
-      </button>
+        Cerrar sesión</button>
       <button class="sb-link" onclick="abrirCambiarPass()">Cambiar contraseña</button>`;
   }else{
+    navReg.classList.add('hidden');
+    // si estaba en registro, redirigir al listado
+    if(document.getElementById('v-registro').classList.contains('active')){
+      document.querySelectorAll('.nav a').forEach(x=>x.classList.remove('active'));
+      document.querySelector('[data-view="listado"]').classList.add('active');
+      document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+      document.getElementById('v-listado').classList.add('active');
+      document.getElementById('tb-title').textContent='Listado';
+    }
     f.innerHTML=`<button class="sb-btn" onclick="abrirLogin()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
       Acceso tesorero</button>`;
@@ -943,12 +913,7 @@ function abrir(id){document.getElementById(id).classList.add('show');}
 function cerrar(id){document.getElementById(id).classList.remove('show');}
 document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('show');}));
 
-// ── INIT ──
-(function init(){
-  llenarSelect('r-fuerza',FUERZAS,'Elige…');
-  llenarSelect('r-talla',TALLAS,'Elige…');
-  reloj();pintarSesion();cargar();
-})();
+(function init(){reloj();pintarSesion();cargar();})();
 </script>
 </body>
 </html>
