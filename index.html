@@ -779,22 +779,88 @@ function pintarReportes(){
 function exportarExcel(){
   if(typeof XLSX==='undefined'){toast('No se pudo cargar el exportador.','err');return;}
   if(!REGS.length){toast('No hay datos para exportar.','err');return;}
-  const filas=REGS.map(r=>({'ID':r.id,'Nombre':r.nombre,'Fuerza':r.fuerza||'','Talla':r.talla||'','Nombre Camisa':r.nombreCamisa||'','Plato':r.plato||'','Estado':r.estado,'Monto':Number(r.monto)||0,'Registrado':r.registradoEn||'','Pagó (registró)':r.pagadoPor||'','Fecha pago':r.pagadoEn||'','Camisa entregada':r.camisaEntregada?'Sí':'No','Comida entregada':r.comidaEntregada?'Sí':'No'}));
-  const ws=XLSX.utils.json_to_sheet(filas);
-  ws['!cols']=[{wch:8},{wch:28},{wch:14},{wch:7},{wch:16},{wch:26},{wch:10},{wch:12},{wch:16},{wch:16},{wch:16},{wch:16},{wch:16}];
-  // Tallas
-  const tl={};REGS.forEach(r=>{const t=r.talla||'(sin talla)';tl[t]=(tl[t]||0)+1;});
-  const ws2=XLSX.utils.json_to_sheet(Object.keys(tl).sort().map(t=>({'Talla':t,'Cantidad':tl[t]})));ws2['!cols']=[{wch:10},{wch:10}];
-  // Platos
-  const pl={};REGS.forEach(r=>{if(r.plato)pl[r.plato]=(pl[r.plato]||0)+1;});
-  const ws3=XLSX.utils.json_to_sheet(PLATOS.map(p=>({'Plato':p.id,'Cantidad':pl[p.id]||0})));ws3['!cols']=[{wch:30},{wch:10}];
+
+  const FUERZAS_XLS=['Ejército','Fuerza Aérea','Fuerza Naval'];
+  const TALLAS_ORD=['XS','S','M','L','XL','XXL','XXXL'];
   const wb=XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb,ws,'Registros');
-  XLSX.utils.book_append_sheet(wb,ws2,'Por talla');
-  XLSX.utils.book_append_sheet(wb,ws3,'Por plato');
+
+  // ── Hoja por fuerza ──
+  FUERZAS_XLS.forEach(fuerza=>{
+    const regs=REGS.filter(r=>r.fuerza===fuerza);
+    const filas=regs.map((r,i)=>({
+      'N°': i+1,
+      'Nombre': r.nombre||'',
+      'Nombre en camisa': r.nombreCamisa||'—',
+      'Talla': r.talla||'—',
+      'Estado pago': r.estado||''
+    }));
+    // Si no hay registros igual creamos hoja vacía con cabeceras
+    const ws=XLSX.utils.json_to_sheet(
+      filas.length ? filas : [{'N°':'','Nombre':'','Nombre en camisa':'','Talla':'','Estado pago':''}]
+    );
+    ws['!cols']=[{wch:5},{wch:34},{wch:20},{wch:8},{wch:12}];
+
+    // Fila de totales al final
+    if(filas.length){
+      const nextRow=filas.length+2; // +1 header +1 data rows start at 2
+      ws['A'+(nextRow)]={v:'TOTAL',t:'s'};
+      ws['B'+(nextRow)]={v:filas.length+' personas',t:'s'};
+      if(!ws['!ref']) ws['!ref']='A1:E'+nextRow;
+      else ws['!ref']='A1:E'+nextRow;
+    }
+    XLSX.utils.book_append_sheet(wb,ws,fuerza);
+  });
+
+  // ── Hoja Resumen ──
+  const resumen=[];
+  // Encabezado del bloque por fuerza
+  const allTallas=[...new Set(REGS.map(r=>r.talla).filter(Boolean))];
+  const tallasOrd=TALLAS_ORD.filter(t=>allTallas.includes(t)).concat(allTallas.filter(t=>!TALLAS_ORD.includes(t)));
+
+  FUERZAS_XLS.forEach(fuerza=>{
+    const regs=REGS.filter(r=>r.fuerza===fuerza);
+    if(!regs.length) return;
+    // Título de fuerza
+    resumen.push({'Fuerza':fuerza,'Talla':'','Cantidad':'','Pagaron':'','No pagaron':''});
+    // Por talla dentro de la fuerza
+    tallasOrd.forEach(talla=>{
+      const sub=regs.filter(r=>r.talla===talla);
+      if(!sub.length) return;
+      resumen.push({
+        'Fuerza':'',
+        'Talla': talla,
+        'Cantidad': sub.length,
+        'Pagaron': sub.filter(r=>r.estado==='Pagó'||r.estado==='Pagó parte').length,
+        'No pagaron': sub.filter(r=>r.estado==='No pagó').length
+      });
+    });
+    // Subtotal fuerza
+    resumen.push({
+      'Fuerza':'Subtotal '+fuerza,
+      'Talla':'',
+      'Cantidad': regs.length,
+      'Pagaron': regs.filter(r=>r.estado==='Pagó'||r.estado==='Pagó parte').length,
+      'No pagaron': regs.filter(r=>r.estado==='No pagó').length
+    });
+    resumen.push({'Fuerza':'','Talla':'','Cantidad':'','Pagaron':'','No pagaron':''});
+  });
+
+  // Total general
+  resumen.push({
+    'Fuerza':'TOTAL GENERAL',
+    'Talla':'',
+    'Cantidad': REGS.length,
+    'Pagaron': REGS.filter(r=>r.estado==='Pagó'||r.estado==='Pagó parte').length,
+    'No pagaron': REGS.filter(r=>r.estado==='No pagó').length
+  });
+
+  const wsRes=XLSX.utils.json_to_sheet(resumen);
+  wsRes['!cols']=[{wch:20},{wch:8},{wch:10},{wch:10},{wch:12}];
+  XLSX.utils.book_append_sheet(wb,wsRes,'Resumen por Fuerza');
+
   const f=new Date();
-  XLSX.writeFile(wb,'SICOP_reporte_'+f.getFullYear()+pad(f.getMonth()+1)+pad(f.getDate())+'.xlsx');
-  toast('Excel generado ('+REGS.length+' registros).','ok');
+  XLSX.writeFile(wb,'SICOP_camisas_'+f.getFullYear()+pad(f.getMonth()+1)+pad(f.getDate())+'.xlsx');
+  toast('Excel generado — '+FUERZAS_XLS.length+' fuerzas + resumen.','ok');
 }
 
 // ── LOGIN / SESIÓN ──
