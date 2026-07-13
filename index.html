@@ -557,13 +557,13 @@ function pintarListado(){
       </div>`:`<span class="${r.comidaEntregada?'sw-ok':'sw-no'}">${r.comidaEntregada?'Entregada':'Pendiente'}</span>`;
 
     const acc=`<td data-label="Acciones"><div class="acts">
-      <button class="btn btn-sm" onclick="abrirEditar('${r.id}')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4Z"/></svg>
-        Editar datos</button>
-      <button class="btn btn-sm" onclick="abrirPlato('${r.id}')" style="background:${r.plato?'var(--soft)':'var(--amber-soft)'};border-color:${r.plato?'var(--border)':'var(--amber)'}">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M3 11l1-7h16l1 7"/><path d="M3 11h18"/><path d="M5 11v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"/></svg>
-        ${r.plato?'Cambiar plato':'Elegir plato'}</button>
       ${tes?`
+        <button class="btn btn-sm" onclick="abrirEditar('${r.id}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4Z"/></svg>
+          Editar datos</button>
+        <button class="btn btn-sm" onclick="abrirPlato('${r.id}')" style="background:${r.plato?'var(--soft)':'var(--amber-soft)'};border-color:${r.plato?'var(--border)':'var(--amber)'}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M3 11l1-7h16l1 7"/><path d="M3 11h18"/><path d="M5 11v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"/></svg>
+          ${r.plato?'Cambiar plato':'Elegir plato'}</button>
         ${(pag||parte)?`<button class="btn btn-sm" onclick="abrirRevertir('${r.id}',this)">Revertir</button>`:''}
         ${!pag?`<button class="btn btn-sm btn-primary" onclick="abrirPago('${r.id}','${parte?'parte':''}')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
